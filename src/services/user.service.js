@@ -51,14 +51,12 @@ async function update({ _id, score }) {
 
 async function login(userCred) {
     const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
+    const user = users.find(user => user.email === userCred.email)
     // const user = await httpService.post('auth/login', userCred)
     if (user) return saveLocalUser(user)
 }
 
 async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    userCred.score = 10000
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     return saveLocalUser(user)
@@ -79,7 +77,7 @@ async function changeScore(by) {
 
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score, isAdmin : user.isAdmin }
+    user = { _id: user._id, email: user.email, profiles: user.profiles }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
@@ -89,11 +87,28 @@ function getLoggedinUser() {
 }
 
 
-// ;(async ()=>{
-//     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})
-//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', score: 10000, isAdmin: true})
-//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', score: 10000})
-// })()
+; (async () => {
+    const userToAdd = {
+        email: 'email@gmail.com', password: '123', profiles: [
+            { profileName: 'Maya', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['comedy'] },
+            { profileName: 'Reut', imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png', preferences: ['drama', 'horror'] },
+        ]
+    }
+    await userService.signup(userToAdd)
+    await userService.login(userToAdd)
+})()
 
 
 
+// categories: Drama
+// Comedy
+// Action
+// Fantasy
+// Horror & Mystery
+// Crime
+// Romance
+// Documentary
+// Reality
+// Animation
+// Family
+// Musical

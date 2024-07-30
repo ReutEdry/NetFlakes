@@ -19,8 +19,8 @@ export function RootCmp() {
             {/* <AppHeader /> לפי תנאי*/}
             <main>
                 <Routes>
-                    <Route path="/login" element={<LoginSignup />} />
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginSignup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
                     <Route path="/media" element={<MediaIndex />}>
                         <Route path=":mediaId?" element={<MediaDetails />} />
