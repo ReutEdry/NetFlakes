@@ -1,0 +1,151 @@
+.login-page {
+    height: 100vh;
+    background-image: url('src/assests/images/NetflixImg.jpg');
+    background-size: cover;
+    background-position: center;
+
+    .background {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.420);
+    }
+
+    header {
+
+        padding: 24px 48px;
+        margin-inline: 130px;
+        margin-inline: calc(15% - (3rem * 2));
+
+        a {
+
+            display: block;
+            margin-inline-start: calc(356px - 322px);
+
+            img {
+                width: 165px;
+                height: 45px;
+                margin-inline-start: 50px;
+                filter: brightness(0.8) contrast(2.5);
+            }
+        }
+    }
+
+    .sign-in-container {
+        // display: flex;
+        // flex-direction: column;
+        // gap: 16px;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 48px 68px;
+        height: 874px;
+        border-radius: 4px;
+        // text-align: center;
+        color: white;
+        width: 450px;
+        // width: 100%;
+        margin: auto;
+
+        h1 {
+            text-align: left;
+            font-size: 2rem;
+            // margin-top: 0;
+            margin-block-start: 0;
+            margin-block-end: 28px;
+        }
+
+        .incorrect-input {
+            color: black;
+            font-weight: 500;
+            font-size: 1rem;
+            background-color: rgb(216, 157, 49);
+            padding: 16px 17px;
+            margin-block-end: 40px;
+            border-radius: 4px;
+        }
+    }
+
+    form {
+
+        .input-container {
+            position: relative;
+            margin-block-end: 1.5rem;
+            // width: 314px;
+            margin-block-end: 16px;
+
+
+            label {
+                // display: flex;
+                // align-items: center;
+                position: absolute;
+                top: 4px;
+                // top: calc();
+                left: 1rem;
+                padding: 12px 0;
+                font-size: 16px;
+                color: rgba(255, 255, 255, 0.7);
+                pointer-events: none;
+                font-size: 1rem;
+                transition: all 0.2s ease;
+            }
+
+
+            input {
+                // background-color: rgba(0, 0, 0, 0.7);
+
+                background-color: rgba(70, 90, 126, 0.4);
+                width: 100%;
+                padding: 24px 16px 8px 15px;
+                color: white;
+                font-family: inherit;
+                border-radius: 6px;
+                font-size: 1rem;
+                border: 0.5px solid rgba(255, 255, 255, 0.5);
+                outline: none;
+
+                &:focus {
+                    border: 3px solid white;
+                }
+
+                &:focus+label,
+                &:not(:placeholder-shown)+label {
+                    padding: 2px 0;
+                    top: 0.4rem;
+                    left: 1rem;
+                    font-size: 12px;
+                    color: rgba(255, 255, 255, 0.7);
+                }
+            }
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            background-color: rgb(229, 9, 20);
+
+            &:hover {
+                background-color: rgb(193, 17, 25);
+            }
+
+            &:focus {
+                color: rgba(255, 255, 255, 0.7);
+                background-color: rgb(153, 22, 29);
+            }
+        }
+    }
+
+    p {
+        // font-family: inherit;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.7);
+
+        a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: white;
+        }
+    }
+}
