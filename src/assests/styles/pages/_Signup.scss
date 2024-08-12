@@ -1,0 +1,139 @@
+.signup-page {
+
+    background-color: white;
+    height: 100vh;
+
+    header {
+        border: 1px solid #e6e6e6;
+
+        div {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo-img {
+                margin-inline-start: 3%;
+                margin-block-start: 2px;
+
+                img {
+                    width: 167px;
+                    filter: brightness(0.75) contrast(2.5);
+                }
+            }
+
+            .signin-btn {
+                margin-inline: 3%;
+
+                a {
+                    color: #333;
+                    font-weight: 700;
+                    line-height: 90px;
+                    font-size: 19px;
+                    text-decoration: none;
+                    letter-spacing: 0.4px;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    .sign-up-box {
+
+        padding: 20px 32px 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+
+        .sign-up-container {
+            width: 440px;
+
+
+
+            .info {
+                color: #333333;
+                margin-block-start: 20px;
+
+                h2 {
+                    font-family: sans-serif;
+                    font-weight: 600;
+                    font-size: 2rem;
+                    margin: 0 0 .4em;
+                }
+
+                p {
+                    font-size: 18px;
+                    margin: 0;
+
+                    &:nth-of-type(1) {
+                        margin-block-start: 13px;
+                    }
+
+                    &:nth-of-type(2) {
+                        margin-block-end: 16px;
+                    }
+                }
+            }
+
+            form {
+
+                .input-container {
+
+                    &:nth-of-type(1) {
+                        margin-block-end: 10px;
+                    }
+
+                    &:nth-of-type(2) {
+                        margin-block-end: 24px;
+
+                    }
+
+                    label {
+                        line-height: 1.5;
+                        color: rgba(0, 0, 0, 0.7);
+                    }
+
+                    input {
+                        line-height: 24px;
+                        font-weight: 500;
+                        background-color: white;
+                        color: black;
+                        border: 0.5px solid black;
+                        outline: none;
+                        border-color: rgba(0, 0, 0, 0.7);
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    padding: 20.5px 48px;
+                    line-height: 24px;
+                    font-size: 24px;
+                    font-weight: 400;
+                    letter-spacing: .025rem;
+                    background-color: #e50914;
+                    border: none;
+                    cursor: pointer;
+                    color: white;
+
+                    &:hover {
+                        background-color: #f6121d;
+                    }
+
+                    &:active {
+                        background-color: #e50914;
+
+                    }
+                }
+
+                &:first-child {}
+            }
+        }
+    }
+
+}

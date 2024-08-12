@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { userService } from '../services/user.service'
-import TextField from '@mui/material/TextField';
-
 import { loginPageSvg } from '../cmps/Svgs'
 
-export function LoginSignup(props) {
+export function Login(props) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [isEmailEmpty, setIsEmailEmpty] = useState(true)
@@ -139,7 +137,6 @@ export function LoginSignup(props) {
                 <header>
                     <div>
                         <Link to={'/'}>
-                            {/* <span>{loginPageSvg.logo}</span> */}
                             <img src="src/assests/images/netflicksLogo.png" alt="" />
                         </Link>
                     </div>
@@ -162,51 +159,14 @@ export function LoginSignup(props) {
                     </form>
                     {/* <p>OR</p> */}
 
-                    <p className='sign-up-opts'>New to Netflix? <a href="">Sign up now</a></p>
+                    <p className='sign-up-opts'>{`New to Netflix? `}
+                        <Link to='/signup'>
+                            Sign up now
+                        </Link>
+                    </p>
                 </div>
             </div>
         </div>
     )
 }
 
-
-
-{/* <TextField
-                            sx={{
-
-                                '& .MuiFilledInput-root': {
-                                    '&:before': {
-                                        borderBottom: 'none'
-                                    },
-                                    '&:after': {
-                                        borderBottom: 'none'
-                                    },
-                                    '&:hover:before': {
-                                        borderBottom: 'none'
-                                    },
-                                    fontSize: '1rem', fontFamily: 'inherit', lineHeight: '1.5rem',
-                                    color: 'white'
-
-                                },
-                                '& .MuiInputLabel-root': {
-
-                                    // 'label': {
-                                    // height
-                                    color: 'rgba(255, 255, 255, 0.7)',
-                                    fontFamily: 'inherit',
-                                    fontSize: 12,
-                                    // backgroundColor: 'red'
-                                    // },
-                                },
-                                '& .MuiTextField-root': {
-
-                                    width: 314,
-                                    // backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                    backgroundColor: 'red',
-                                }
-                            }}
-                            id="filled-search"
-                            label="Email or mobile number"
-                            type="search"
-                            variant="filled"
-                        /> */}
