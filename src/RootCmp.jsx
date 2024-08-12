@@ -2,13 +2,14 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { HomePage } from './pages/HomePage'
-import { LoginSignup } from './pages/LoginSignup'
 import { UserProfiles } from './pages/UserProfiles'
 import { MediaIndex } from './pages/mediaIndex'
 import { MovieIndex } from './pages/MovieIndex'
 import { SeriesIndex } from './pages/SeriesIndex'
 import { MediaDisplay } from './pages/MediaDisplay'
 import { MediaDetails } from './cmps/MediaDetails'
+import { Login } from './pages/Login'
+import { Signup } from './pages/Signup'
 
 
 
@@ -20,7 +21,8 @@ export function RootCmp() {
             <main>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/login" element={<LoginSignup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
                     <Route path="/media" element={<MediaIndex />}>
                         <Route path=":mediaId?" element={<MediaDetails />} />

@@ -4,4 +4,66 @@
 
 body {
     background-color: #f6f8fc;
+    margin: 0;
+    font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+}
+
+button {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+form {
+
+    .input-container {
+        position: relative;
+
+
+        label {
+            // display: flex;
+            // align-items: center;
+            position: absolute;
+            top: 4px;
+            // top: calc();
+            left: 1rem;
+            padding: 12px 0;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+
+        input {
+            // background-color: rgba(0, 0, 0, 0.7);
+
+            background-color: rgba(70, 90, 126, 0.4);
+            width: 100%;
+            padding: 24px 16px 8px 15px;
+            color: white;
+            font-family: inherit;
+            border-radius: 6px;
+            font-size: 1rem;
+            border: 0.5px solid rgba(255, 255, 255, 0.5);
+            outline: none;
+
+            &:focus {
+                border: 3px solid white;
+            }
+
+            &:focus+label,
+            &:not(:placeholder-shown)+label {
+                padding: 2px 0;
+                top: 0.4rem;
+                left: 1rem;
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    }
+
 }

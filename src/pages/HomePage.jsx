@@ -2,7 +2,7 @@ import { homePageSvg } from "../cmps/Svgs";
 import netflixBgc from '../assests/images/netflixBgc.jpg';
 import tvPng from '../assests/images/tv.png';
 import mobilePic from '../assests/images/mobilepic.jpg';
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 export function HomePage() {
@@ -33,7 +33,9 @@ export function HomePage() {
                             <div className="logo">
                                 {homePageSvg.logo}
                             </div>
-                            <button>Sign In</button>
+                            <Link to={'/login'}>
+                                <button>Sign In</button>
+                            </Link>
                         </header>
                         <section className="info-section">
                             <h2>Unlimited movies, TV shows, and more</h2>
