@@ -67,6 +67,47 @@ export function HomePage() {
                 </div>
             </div>
             <hr />
+            <div className="bottom-section home-third-section">
+                <div className="graphics">
+                    <img src={mobilePic} alt="mobile picture" className="mobile-image" />
+                    <div className="loading-stranger-things">
+                        <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png" alt="stranger-things" />
+                        <div className="text-section">
+                            <h4>Stranger Things</h4>
+                            <p>Downloading..</p>
+                        </div>
+                        <div className="gif"></div>
+                    </div>
+                </div>
+                <div className="text flex column">
+                    <h2>Download your shows to watch offline</h2>
+                    <h3>Save your favorites easily and always have something to watch.</h3>
+                </div>
+            </div>
+            <hr />
+            <div className="bottom-section home-fourth-section">
+                <div className="text flex column">
+                    <h2>Watch everywhere</h2>
+                    <h3>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</h3>
+                </div>
+                <div className="graphics">
+                    <img src='https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png' alt="TV" />
+                    <div>
+                        <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v" controls autoPlay loop muted />
+                    </div>
+
+                </div>
+            </div>
+            <hr />
+            <div className="bottom-section home-fifth-section">
+                <div className="graphics">
+                    <img src='https://occ-0-1855-56.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABejKYujIIDQciqmGJJ8BtXkYKKTi5jiqexltvN1YmvXYIfX8B9CYwooUSIzOKneblRFthZAFsYLMgKMyNfeHwk16DmEkpIIcb6A3.png' alt="TV" />
+                </div>
+                <div className="text flex column">
+                    <h2>Create profiles for kids</h2>
+                    <h3>Send kids on adventures with their favorite characters in a space made just for them—free with your membership.</h3>
+                </div>
+            </div>
             <hr />
             <div style={{ width: '100%', margin: 'auto' }}>
                 <section className="frequently-asked-questions">
