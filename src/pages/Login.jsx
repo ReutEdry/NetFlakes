@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { userService } from '../services/user.service'
-import { loginPageSvg } from '../cmps/Svgs'
+import { homePageSvg } from '../cmps/Svgs'
 
 export function Login(props) {
+    const [isInfoOpen, setIsInfoOpen] = useState(false)
+
+
+
+
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [isEmailEmpty, setIsEmailEmpty] = useState(true)
@@ -135,11 +140,11 @@ export function Login(props) {
         <div className="login-page">
             <div className="background">
                 <header>
-                    <div>
-                        <Link to={'/'}>
-                            <img src="src/assests/images/netflicksLogo.png" alt="" />
-                        </Link>
-                    </div>
+                    <Link to={'/'}>
+                        <div>
+                            {homePageSvg.logo}
+                        </div>
+                    </Link>
                 </header>
 
                 <div className='sign-in-container'>
@@ -157,13 +162,19 @@ export function Login(props) {
                         </div>
                         <button>Sign in</button>
                     </form>
-                    {/* <p>OR</p> */}
 
                     <p className='sign-up-opts'>{`New to Netflix? `}
                         <Link to='/signup'>
                             Sign up now
                         </Link>
                     </p>
+
+                    <div className='info'>
+                        <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. {!isInfoOpen && <span onClick={() => setIsInfoOpen(true)}> Learn more</span>}</p>
+                        {isInfoOpen && <p>The information collected by Google reCAPTCHA is subject to the Google <a target="_blank" href="https://policies.google.com/privacy">Privacy Policy</a> and <a target="_blank" href="https://policies.google.com/terms">Terms of Service</a>, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google).
+                        </p>}
+                    </div>
+
                 </div>
             </div>
         </div>

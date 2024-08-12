@@ -10,43 +10,38 @@
     }
 
     header {
-
+        display: flex;
         padding: 24px 48px;
-        margin-inline: 130px;
-        margin-inline: calc(15% - (3rem * 2));
+        margin-inline: 317px;
+        margin-inline: calc(33.9% - 333.8px);
 
         a {
-
-            display: block;
-            margin-inline-start: calc(356px - 322px);
-
-            img {
-                width: 165px;
-                height: 45px;
-                margin-inline-start: 50px;
+            div {
+                width: 148px;
                 filter: brightness(0.8) contrast(2.5);
+
+                svg {
+                    path {
+                        fill: red
+                    }
+                }
             }
         }
     }
 
     .sign-in-container {
-        // display: flex;
-        // flex-direction: column;
-        // gap: 16px;
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(0, 0, 0, 0.8);
+        // background-color: 000000;
         padding: 48px 68px;
         height: 735px;
         border-radius: 4px;
-        // text-align: center;
         color: white;
         width: 450px;
-        // width: 100%;
         margin: auto;
 
         h1 {
             text-align: left;
             font-size: 2rem;
-            // margin-top: 0;
             margin-block-start: 0;
             margin-block-end: 28px;
         }
@@ -60,46 +55,81 @@
             margin-block-end: 40px;
             border-radius: 4px;
         }
-    }
 
-    form {
+        form {
 
-        .input-container {
-            margin-block-end: 16px;
+            .input-container {
+                margin-block-end: 16px;
 
-        }
-
-        button {
-            width: 100%;
-            padding: 10px 16px;
-            font-size: 1rem;
-            font-weight: 500;
-            border-radius: 4px;
-            cursor: pointer;
-            color: white;
-            background-color: rgb(229, 9, 20);
-            border: none;
-
-            &:hover {
-                background-color: rgb(193, 17, 25);
             }
 
-            &:active {
-                color: rgba(255, 255, 255, 0.7);
-                background-color: rgb(153, 22, 29);
+            button {
+                width: 100%;
+                padding: 10px 16px;
+                font-size: 1rem;
+                font-weight: 500;
+                border-radius: 4px;
+                cursor: pointer;
+                color: white;
+                background-color: rgb(229, 9, 20);
+                border: none;
+
+                &:hover {
+                    background-color: rgb(193, 17, 25);
+                }
+
+                &:active {
+                    color: rgba(255, 255, 255, 0.7);
+                    background-color: rgb(153, 22, 29);
+                }
             }
         }
-    }
 
-    p {
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.7);
-
-        a {
-            text-decoration: none;
-            font-weight: 500;
+        p {
             font-size: 1rem;
-            color: white;
+            color: rgba(255, 255, 255, 0.7);
+
+            a {
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1rem;
+                color: white;
+            }
+        }
+
+        .info {
+
+            margin-block-start: 24px;
+
+            P {
+                font-size: 13px;
+                color: #8c8c8c;
+
+                &:first-child {
+                    margin-block-end: 13px;
+                }
+
+                span,
+                a {
+                    font-size: 13px;
+                    color: #0071eb;
+                    cursor: pointer;
+
+                    &:hover {
+
+                        text-decoration: underline;
+                    }
+
+                    a {
+                        font-size: 13px;
+                    }
+
+                    // outline:;
+                }
+            }
+
         }
     }
+
+
 }
