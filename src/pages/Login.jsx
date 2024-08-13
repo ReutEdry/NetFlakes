@@ -1,15 +1,24 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { userService } from '../services/user.service'
 import { homePageSvg } from '../cmps/Svgs'
 
 export function Login(props) {
+    const location = useLocation()
+    const [credentials, setCredentials] = useState({ email: location.state || '', password: '' })
     const [isInfoOpen, setIsInfoOpen] = useState(false)
 
+    function handleChange(ev) {
+
+        const { name, value } = ev.target
+        setCredentials((prevCred => (
+            { ...prevCred, [name]: value }
+        )))
+        console.log(credentials);
+    }
 
 
 
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(false)
     const [isEmailEmpty, setIsEmailEmpty] = useState(true)
     const [isPasswordEmpty, setIsPasswordEmpty] = useState('')
@@ -30,12 +39,6 @@ export function Login(props) {
     function clearState() {
         setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
         setIsSignup(false)
-    }
-
-    function handleChange(ev) {
-        const field = ev.target.name
-        const value = ev.target.value
-        setCredentials({ ...credentials, [field]: value })
     }
 
     function onLogin(ev = null) {
@@ -153,21 +156,27 @@ export function Login(props) {
                     {!isCorrect && <div className='incorrect-input'>Incorrect password or email</div>}
                     <form action="">
                         <div className="input-container">
-                            <input type="email" id="email" required placeholder=" " />
+                            <input type="email" id="email" required placeholder=" " name='email' value={credentials.email} onChange={(ev) => handleChange(ev)} />
                             <label htmlFor="email">Email or mobile number</label>
                         </div>
                         <div className="input-container">
-                            <input type="password" id="password" required placeholder=" " />
+                            <input type="password" name='password' id="password" required placeholder=" " onChange={(ev) => handleChange(ev)} />
                             <label htmlFor="password">Password</label>
                         </div>
                         <button>Sign in</button>
                     </form>
 
-                    <p className='sign-up-opts'>{`New to Netflix? `}
-                        <Link to='/signup'>
-                            Sign up now
+                    <div className="login-opts">
+                        <p>OR</p>
+                        <Link to='/' className='guest'>
+                            Login as a <span>GUEST</span>
                         </Link>
-                    </p>
+                        <p> {`New to Netflix? `}
+                            <Link to='/signup'>
+                                Sign up now
+                            </Link>
+                        </p>
+                    </div>
 
                     <div className='info'>
                         <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. {!isInfoOpen && <span onClick={() => setIsInfoOpen(true)}> Learn more</span>}</p>

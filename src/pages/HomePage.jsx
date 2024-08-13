@@ -2,10 +2,14 @@ import { homePageSvg } from "../cmps/Svgs";
 import netflixBgc from '../assests/images/netflixBgc.jpg';
 import tvPng from '../assests/images/tv.png';
 import mobilePic from '../assests/images/mobilepic.jpg';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function HomePage() {
+
+    const [email, setEmail] = useState('')
+    const navigate = useNavigate();
+
 
     const [openQuestions, setOpenQuestions] = useState({
         one: false,
@@ -24,6 +28,12 @@ export function HomePage() {
         });
     }
 
+    function handleSubmit(event) {
+        event.preventDefault()
+
+        navigate('/login', { state: email })
+    }
+
     return (
         <section className="home-page">
             <div className="home-top-section" style={{ backgroundImage: `url(${netflixBgc})` }}>
@@ -40,13 +50,14 @@ export function HomePage() {
                         <section className="info-section">
                             <h2>Unlimited movies, TV shows, and more</h2>
                             <h3>Watch anywhere. Cancel anytime.</h3>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
                                 <div>
-                                    <input type="text" />
-                                    <NavLink to={'/login'}>
-                                        <button aria-label="Email address">Get Started &gt;</button>
-                                    </NavLink>
+                                    <input type="email" onChange={(e) => setEmail(e.target.value)}
+                                    />
+                                    {/* <NavLink to={'/login'}> */}
+                                    <button aria-label="Email address">Get Started &gt;</button>
+                                    {/* </NavLink> */}
                                 </div>
                             </form>
                         </section>
