@@ -1,5 +1,5 @@
 .login-page {
-    height: 100vh;
+    height: 100%;
     background-image: url('src/assests/images/NetflixImg.jpg');
     background-size: cover;
     background-position: center;
@@ -94,6 +94,9 @@
                 font-weight: 500;
                 font-size: 1rem;
                 color: white;
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
 
