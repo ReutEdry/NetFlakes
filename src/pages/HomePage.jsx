@@ -52,12 +52,10 @@ export function HomePage() {
                             <h3>Watch anywhere. Cancel anytime.</h3>
                             <form onSubmit={handleSubmit}>
                                 <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
-                                <div>
-                                    <input type="email" onChange={(e) => setEmail(e.target.value)}
+                                <div >
+                                    <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
                                     />
-                                    {/* <NavLink to={'/login'}> */}
-                                    <button aria-label="Email address">Get Started &gt;</button>
-                                    {/* </NavLink> */}
+                                    <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
                                 </div>
                             </form>
                         </section>
@@ -141,13 +139,12 @@ export function HomePage() {
                 </section>
             </div>
             <section className="info-section bottom">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
-                    <div>
-                        <input type="text" />
-                        <NavLink to={'/login'}>
-                            <button aria-label="Email address">Get Started &gt;</button>
-                        </NavLink>
+                    <div >
+                        <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
                     </div>
                 </form>
             </section>
