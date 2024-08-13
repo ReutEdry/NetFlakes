@@ -85,15 +85,38 @@
             }
         }
 
-        p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+        .login-opts {
 
-            a {
-                text-decoration: none;
-                font-weight: 500;
-                font-size: 1rem;
+            .guest {
+                display: block;
+                padding: 9px 16px;
+                border-radius: 4px;
+                text-align: center;
                 color: white;
+                background-color: rgba(128, 128, 128, 0.4);
+
+                span {
+                    font-weight: 500;
+                    font-size: 18px;
+                }
+            }
+
+            p:first-child {
+                text-align: center;
+            }
+
+            p {
+                font-size: 1rem;
+                color: rgba(255, 255, 255, 0.7);
+
+                a {
+                    font-weight: 500;
+                    color: white;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
 
@@ -130,6 +153,4 @@
 
         }
     }
-
-
 }
