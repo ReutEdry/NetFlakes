@@ -1,5 +1,5 @@
 .login-page {
-    height: 100vh;
+    height: 100%;
     background-image: url('src/assests/images/NetflixImg.jpg');
     background-size: cover;
     background-position: center;
@@ -110,47 +110,44 @@
                 color: rgba(255, 255, 255, 0.7);
 
                 a {
+                    text-decoration: none;
                     font-weight: 500;
+                    font-size: 1rem;
                     color: white;
-
-                    &:hover {
-                        text-decoration: underline;
-                    }
                 }
             }
-        }
 
-        .info {
+            .info {
 
-            margin-block-start: 24px;
+                margin-block-start: 24px;
 
-            P {
-                font-size: 13px;
-                color: #8c8c8c;
-
-                &:first-child {
-                    margin-block-end: 13px;
-                }
-
-                span,
-                a {
+                P {
                     font-size: 13px;
-                    color: #0071eb;
-                    cursor: pointer;
+                    color: #8c8c8c;
 
-                    &:hover {
-
-                        text-decoration: underline;
+                    &:first-child {
+                        margin-block-end: 13px;
                     }
 
+                    span,
                     a {
                         font-size: 13px;
+                        color: #0071eb;
+                        cursor: pointer;
+
+                        &:hover {
+
+                            text-decoration: underline;
+                        }
+
+                        a {
+                            font-size: 13px;
+                        }
+
+                        // outline:;
                     }
-
-                    // outline:;
                 }
-            }
 
+            }
         }
     }
-}
