@@ -52,7 +52,7 @@ export function HomePage() {
                             <h3>Watch anywhere. Cancel anytime.</h3>
                             <form onSubmit={handleSubmit}>
                                 <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
-                                <div >
+                                <div className="input-container" >
                                     <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
                                     />
                                     <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
@@ -141,7 +141,7 @@ export function HomePage() {
             <section className="info-section bottom">
                 <form onSubmit={handleSubmit}>
                     <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
-                    <div >
+                    <div className="input-container" >
                         <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
                         />
                         <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
