@@ -89,12 +89,15 @@
         .login-opts {
 
             .guest {
-                display: block;
+                width: 100%;
+                // display: block;
                 padding: 9px 16px;
                 border-radius: 4px;
                 text-align: center;
                 color: white;
                 background-color: rgba(128, 128, 128, 0.4);
+                border: none;
+                cursor: pointer;
 
                 span {
                     font-weight: 500;

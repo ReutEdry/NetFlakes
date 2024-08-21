@@ -8,7 +8,7 @@ import { useState } from "react";
 export function HomePage() {
 
     const [email, setEmail] = useState('')
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
 
     const [openQuestions, setOpenQuestions] = useState({

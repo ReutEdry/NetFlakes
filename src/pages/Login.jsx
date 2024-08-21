@@ -1,143 +1,59 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { userService } from '../services/user.service'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { homePageSvg } from '../cmps/Svgs'
+import { loadUsers, login } from '../store/actions/user.actions'
 
 export function Login(props) {
     const location = useLocation()
     const [credentials, setCredentials] = useState({ email: location.state || '', password: '' })
     const [isInfoOpen, setIsInfoOpen] = useState(false)
+    const [isCorrectCred, setIsCorrectCred] = useState(true)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        loadUsers()
+    }
+        , [])
 
     function handleChange(ev) {
-
         const { name, value } = ev.target
         setCredentials((prevCred => (
             { ...prevCred, [name]: value }
         )))
-        console.log(credentials);
     }
 
+    async function onLogin(ev) {
+        ev.preventDefault()
 
+        try {
+            const user = await login(credentials)
+            console.log(user)
+            if (!user) setIsCorrectCred(false)
+            else {
+                clearState()
+                // later on chaning the navigation
+                navigate('/userProfiles')
+            }
 
-    const [isSignup, setIsSignup] = useState(false)
-    const [isEmailEmpty, setIsEmailEmpty] = useState(true)
-    const [isPasswordEmpty, setIsPasswordEmpty] = useState('')
-    const [users, setUsers] = useState([])
-    let isEmpty = useRef()
+        } catch (err) {
+            console.log(`Could'nt login user`, err);
+        }
+    }
 
-    let isCorrect = true
-
-    useEffect(() => {
-        loadUsers()
-    }, [])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
+    async function onConnectAsAGuest() {
+        try {
+            await login({ email: 'guest@gmail.com', password: "1234" })
+            clearState()
+            // later on chaning the navigation
+            navigate('/userProfiles')
+        } catch (err) {
+            console.log('Could not connect as a guest', err);
+        }
     }
 
     function clearState() {
-        setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
-        setIsSignup(false)
+        setCredentials({ email: '', password: '' })
     }
-
-    function onLogin(ev = null) {
-        if (ev) ev.preventDefault()
-        if (!credentials.username) return
-        props.onLogin(credentials)
-        clearState()
-    }
-
-    function onSignup(ev = null) {
-        if (ev) ev.preventDefault()
-        if (!credentials.username || !credentials.password || !credentials.fullname) return
-        props.onSignup(credentials)
-        clearState()
-    }
-
-    function toggleSignup() {
-        setIsSignup(!isSignup)
-    }
-
-    function onUploaded(imgUrl) {
-        setCredentials({ ...credentials, imgUrl })
-    }
-
-    // function onCheckIfInputIsmpty(ev) {
-    //     console.log(ev.target.type);
-    //     console.log(ev.target.value);
-    //     if (ev.target.type === 'email') setIsEmailEmpty(false)
-
-    // }
-
-    // return (
-    //     <div className="login-page">
-
-    //         <h1>Sign In</h1>
-    //         {/* <p>
-    //             <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
-    //         </p> */}
-    //         {!isSignup && <form className="login-form" onSubmit={onLogin}>
-    //             <select
-    //                 name="username"
-    //                 value={credentials.username}
-    //                 onChange={handleChange}
-    //             >
-    //                 <option value="">Select User</option>
-    //                 {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-    //             </select>
-
-    //             {/* <input
-    //                     type="text"
-    //                     name="username"
-    //                     value={username}
-    //                     placeholder="Username"
-    //                     onChange={handleChange}
-    //                     required
-    //                     autoFocus
-    //                 />
-    //                 <input
-    //                     type="password"
-    //                     name="password"
-    //                     value={password}
-    //                     placeholder="Password"
-    //                     onChange={handleChange}
-    //                     required
-    //                 /> */}
-    //             <button>Login</button>
-    //         </form>}
-    //         <div className="signup-section">
-    //             {isSignup && <form className="signup-form" onSubmit={onSignup}>
-    //                 <input
-    //                     type="text"
-    //                     name="fullname"
-    //                     value={credentials.fullname}
-    //                     placeholder="Fullname"
-    //                     onChange={handleChange}
-    //                     required
-    //                 />
-    //                 <input
-    //                     type="text"
-    //                     name="username"
-    //                     value={credentials.username}
-    //                     placeholder="Username"
-    //                     onChange={handleChange}
-    //                     required
-    //                 />
-    //                 <input
-    //                     type="password"
-    //                     name="password"
-    //                     value={credentials.password}
-    //                     placeholder="Password"
-    //                     onChange={handleChange}
-    //                     required
-    //                 />
-    //                 {/* <ImgUploader onUploaded={onUploaded} /> */}
-    //                 <button>Signup</button>
-    //             </form>}
-    //         </div>
-    //     </div>
-    // )
 
     return (
         <div className="login-page">
@@ -153,14 +69,15 @@ export function Login(props) {
                 <div className='sign-in-container'>
                     <h1>Sign In</h1>
 
-                    {!isCorrect && <div className='incorrect-input'>Incorrect password or email</div>}
-                    <form action="">
+                    {!isCorrectCred && <div className='incorrect-input'>Incorrect password or email</div>}
+                    <form action="" onSubmit={(ev) => onLogin(ev)}>
                         <div className="input-container">
-                            <input type="email" id="email" required placeholder=" " name='email' value={credentials.email} onChange={(ev) => handleChange(ev)} />
+                            <input type="email" id="email" required placeholder=" " name='email' value={credentials.email} onChange={(ev) => handleChange(ev)} autoComplete="off"
+                            />
                             <label htmlFor="email">Email or mobile number</label>
                         </div>
                         <div className="input-container">
-                            <input type="password" name='password' id="password" required placeholder=" " onChange={(ev) => handleChange(ev)} />
+                            <input type="password" name='password' id="password" required placeholder=" " value={credentials.password} onChange={(ev) => handleChange(ev)} />
                             <label htmlFor="password">Password</label>
                         </div>
                         <button>Sign in</button>
@@ -168,9 +85,9 @@ export function Login(props) {
 
                     <div className="login-opts">
                         <p>OR</p>
-                        <Link to='/' className='guest'>
+                        <button className='guest' onClick={onConnectAsAGuest}>
                             Login as a <span>GUEST</span>
-                        </Link>
+                        </button>
                         <p> {`New to Netflix? `}
                             <Link to='/signup'>
                                 Sign up now
