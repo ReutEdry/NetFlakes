@@ -53,7 +53,7 @@ export function HomePage() {
                             <form onSubmit={handleSubmit}>
                                 <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
                                 <div className="input-container" >
-                                    <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
+                                    <input type="email" id="email" required placeholder=" " name='email' autoComplete="off" onChange={(e) => setEmail(e.target.value)}
                                     />
                                     <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
                                 </div>
@@ -142,7 +142,7 @@ export function HomePage() {
                 <form onSubmit={handleSubmit}>
                     <h4>Ready to watch? Enter your email to create or restart your membership.</h4>
                     <div className="input-container" >
-                        <input type="email" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
+                        <input type="email" autoComplete="off" id="email" required placeholder=" " name='email' onChange={(e) => setEmail(e.target.value)}
                         />
                         <label htmlFor="email">Email adress</label>                          <button aria-label="Email address">Get Started &gt;</button>
                     </div>

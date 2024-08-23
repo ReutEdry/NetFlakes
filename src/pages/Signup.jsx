@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "../store/actions/user.actions";
-import { signupSvg } from "../cmps/Svgs";
+import { loginPageSvg, signupSvg } from "../cmps/Svgs";
 
 export function Signup() {
     const [credentials, setCredentials] = useState({ email: '', name: '', password: '' })
     const [isPasswordStandard, setIsPasswordStandard] = useState(true)
     const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-
+    const [isVisible, setIsVisible] = useState(false)
     const navigate = useNavigate()
 
     function onChange(ev) {
@@ -53,6 +53,10 @@ export function Signup() {
         setIsFormSubmitted(false)
     }
 
+    function onTogglePaswordVisbility(ev) {
+        setIsVisible(prev => !prev)
+    }
+
     return (
         <section className="signup-page">
             <header>
@@ -80,16 +84,38 @@ export function Signup() {
                     </div>
                     <form action="" onSubmit={(ev) => onSignup(ev)}>
                         <div className="input-container">
-                            <input type="email" id="email" name="email" value={credentials.email} required placeholder=" " onChange={(ev) => onChange(ev)} />
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={credentials.email}
+                                required
+                                placeholder=" "
+                                onChange={(ev) => onChange(ev)} />
                             <label htmlFor="email">Email</label>
                         </div>
                         <div className="input-container">
-                            <input type="text" id="name" name="name" value={credentials.name} required placeholder=" " onChange={(ev) => onChange(ev)} />
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={credentials.name}
+                                required
+                                placeholder=" "
+                                onChange={(ev) => onChange(ev)} />
                             <label htmlFor="name">Name</label>
                         </div>
                         <div className="input-container">
-                            <input className={!isPasswordStandard ? 'not-standard' : ''} type="password" id="password" name="password" value={credentials.password} required placeholder=" " onChange={(ev) => onChange(ev)} />
+                            <input className={!isPasswordStandard ? 'not-standard' : ''}
+                                type={isVisible ? 'text' : "password"}
+                                id="password"
+                                name="password"
+                                value={credentials.password}
+                                required
+                                placeholder=" "
+                                onChange={(ev) => onChange(ev)} />
                             <label htmlFor="password">Add a password</label>
+                            <span onClick={onTogglePaswordVisbility} className='signup-show-pass flex align-center'>{isVisible ? loginPageSvg.hidePassword : loginPageSvg.visiblePassword}</span>
                             {!isPasswordStandard && (
                                 <p className="error-msg"> <span>{signupSvg.error}</span>Password should be between 6 and 60 characters.</p>
                             )}

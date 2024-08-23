@@ -155,8 +155,15 @@
                     }
                 }
 
-                &:first-child {}
+                span {
+                    .icon-hide-svg {
+                        path {
+                            stroke: black;
+                        }
+                    }
+                }
             }
+
         }
     }
 

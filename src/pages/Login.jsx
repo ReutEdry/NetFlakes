@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { homePageSvg } from '../cmps/Svgs'
+import { homePageSvg, loginPageSvg } from '../cmps/Svgs'
 import { loadUsers, login } from '../store/actions/user.actions'
 
 export function Login(props) {
     const location = useLocation()
     const [credentials, setCredentials] = useState({ email: location.state || '', password: '' })
     const [isInfoOpen, setIsInfoOpen] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
     const [isCorrectCred, setIsCorrectCred] = useState(true)
     const navigate = useNavigate()
 
@@ -16,6 +17,7 @@ export function Login(props) {
         , [])
 
     function handleChange(ev) {
+
         const { name, value } = ev.target
         setCredentials((prevCred => (
             { ...prevCred, [name]: value }
@@ -31,7 +33,6 @@ export function Login(props) {
             if (!user) setIsCorrectCred(false)
             else {
                 clearState()
-                // later on chaning the navigation
                 navigate('/userProfiles')
             }
 
@@ -44,11 +45,14 @@ export function Login(props) {
         try {
             await login({ email: 'guest@gmail.com', password: "1234" })
             clearState()
-            // later on chaning the navigation
             navigate('/userProfiles')
         } catch (err) {
             console.log('Could not connect as a guest', err);
         }
+    }
+
+    function onTogglePaswordVisbility(ev) {
+        setIsVisible(prev => !prev)
     }
 
     function clearState() {
@@ -72,13 +76,28 @@ export function Login(props) {
                     {!isCorrectCred && <div className='incorrect-input'>Incorrect password or email</div>}
                     <form action="" onSubmit={(ev) => onLogin(ev)}>
                         <div className="input-container">
-                            <input type="email" id="email" required placeholder=" " name='email' value={credentials.email} onChange={(ev) => handleChange(ev)} autoComplete="off"
+                            <input
+                                type="email"
+                                id="email"
+                                required placeholder=" "
+                                name='email'
+                                value={credentials.email}
+                                onChange={(ev) => handleChange(ev)}
+                                autoComplete="off"
                             />
                             <label htmlFor="email">Email or mobile number</label>
                         </div>
                         <div className="input-container">
-                            <input type="password" name='password' id="password" required placeholder=" " value={credentials.password} onChange={(ev) => handleChange(ev)} />
+                            <input
+                                type={isVisible ? 'text' : "password"}
+                                name='password'
+                                id="password"
+                                required placeholder=" "
+                                value={credentials.password}
+                                onChange={(ev) => handleChange(ev)}
+                            />
                             <label htmlFor="password">Password</label>
+                            <span onClick={onTogglePaswordVisbility} className='flex align-center'>{isVisible ? loginPageSvg.hidePassword : loginPageSvg.visiblePassword}</span>
                         </div>
                         <button>Sign in</button>
                     </form>
