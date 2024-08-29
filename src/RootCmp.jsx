@@ -7,6 +7,7 @@ import { MediaIndex } from './pages/mediaIndex'
 import { MovieIndex } from './pages/MovieIndex'
 import { SeriesIndex } from './pages/SeriesIndex'
 import { MediaDisplay } from './pages/MediaDisplay'
+import { EditProfile } from './pages/EditProfile'
 import { MediaDetails } from './cmps/MediaDetails'
 import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
@@ -24,6 +25,7 @@ export function RootCmp() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
+                    <Route path="/profileEdit" element={<EditProfile />} />
                     <Route path="/media" element={<MediaIndex />}>
                         <Route path=":mediaId?" element={<MediaDetails />} />
                     </Route>

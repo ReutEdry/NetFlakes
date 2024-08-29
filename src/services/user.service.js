@@ -23,22 +23,25 @@ window.userService = userService
 const usersStorage = [
     {
         _id: 'r101', username: 'Reut', password: '0000', email: 'reut@gmail.com', profiles: [
-            { profileName: 'Reut', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Horror & Mystery'] }
+            { _id: makeId(7), profileName: 'Reut', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Horror & Mystery'] }
         ]
     },
     {
         _id: 'm101', username: 'Maya', password: '1234', email: 'maya@gmail.com', profiles: [
-            { profileName: 'Maya', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Comedy'] }
+            { _id: makeId(7), profileName: 'Maya', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Comedy'] }
         ]
     },
     {
         _id: 'guest', username: 'Guest', password: '1234', email: 'guest@gmail.com', profiles: [
-            { profileName: 'Guest', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Romance'] }
+            { _id: makeId(7), profileName: 'Guest', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Romance'] },
+            { _id: makeId(7), profileName: 'Guest', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Romance'] },
+            { _id: makeId(7), profileName: 'Guest', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Romance'] },
+            { _id: makeId(7), profileName: 'Guest', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Romance'] }
         ]
     },
     {
         _id: 'r', username: 'r', password: '1234', email: 'r@1', profiles: [
-            { profileName: 'r', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Action'] }
+            { _id: makeId(7), profileName: 'r', imgUrl: 'https://wallpapers.com/images/hd/netflix-profile-pictures-5yup5hd2i60x7ew3.jpg', preferences: ['Action'] }
         ]
     },
 ]
@@ -116,6 +119,17 @@ function _capitalizeFirstLetter(userName) {
     return userName.charAt(0).toUpperCase() + userName.slice(1)
 }
 
+
+//////////// for now, wil delete later ///////////
+function makeId(length) {
+    var text = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+    for (var i = 0; i < length; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return text
+}
 
 
 // // categories: Drama
