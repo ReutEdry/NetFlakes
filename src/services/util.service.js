@@ -5,7 +5,8 @@ export const utilService = {
     debounce,
     randomPastTime,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    animateCSS
 }
 
 function makeId(length = 6) {
@@ -60,5 +61,24 @@ function saveToStorage(key, value) {
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
+}
+
+function animateCSS(el, isRemoveClass = true) {
+    console.log('util');
+
+    return new Promise((resolve, reject) => {
+        const animationName = `profile-animate`
+        el.classList.remove(animationName)
+        el.offsetWidth
+        el.classList.add(animationName)
+
+        function handleAnimationEnd(event) {
+            event.stopPropagation()
+            if (isRemoveClass) el.classList.remove(animationName)
+            resolve('Animation ended')
+        }
+
+        el.addEventListener('animationend', handleAnimationEnd, { once: true })
+    })
 }
 

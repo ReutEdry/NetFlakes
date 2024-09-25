@@ -30,7 +30,6 @@ export function HomePage() {
 
     function handleSubmit(event) {
         event.preventDefault()
-
         navigate('/login', { state: email })
     }
 
