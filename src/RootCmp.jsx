@@ -25,7 +25,7 @@ export function RootCmp() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
-                    <Route path="/profileEdit" element={<EditProfile />} />
+                    <Route path="/profileEdit/:profileId?" element={<EditProfile />} />
                     <Route path="/media" element={<MediaIndex />}>
                         <Route path=":mediaId?" element={<MediaDetails />} />
                     </Route>

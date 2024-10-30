@@ -64,8 +64,6 @@ function loadFromStorage(key) {
 }
 
 function animateCSS(el, isRemoveClass = true) {
-    console.log('util');
-
     return new Promise((resolve, reject) => {
         const animationName = `profile-animate`
         el.classList.remove(animationName)

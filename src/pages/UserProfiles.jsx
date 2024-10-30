@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { profilesSvg } from "../cmps/Svgs";
 import { useEffect, useRef, useState } from "react";
 import { utilService } from "../services/util.service";
@@ -8,6 +8,7 @@ export function UserProfiles() {
 
   const user = useSelector(storeState => storeState.userModule.user)
   const [isProfileEdit, setIsProfileEdit] = useState(false)
+  const navigate = useNavigate()
   const containerRef = useRef()
   console.log(user.profiles)
 
@@ -16,17 +17,20 @@ export function UserProfiles() {
   }, [])
 
 
-  function onEditProfile(profileId) {
-    console.log(profileId);
+  function onEditProfile(ev, profile) {
+    ev.preventDefault()
+    const loc = isProfileEdit ? `/profileEdit/${profile._id}` : '/media'
+    navigate(`${loc}`, { state: profile })
   }
+
+  // function onEditProfile2(profileId) {
+  //   console.log(profileId);
+  // }
 
   async function onActivate() {
     setIsProfileEdit(prev => prev = !prev)
     await utilService.animateCSS(containerRef.current)
   }
-
-  console.log(isProfileEdit);
-
 
   return (
     <section className="user-profiles">
@@ -38,19 +42,22 @@ export function UserProfiles() {
           <ul>
             {user.profiles.map((profile) =>
               <li key={profile._id}>
-                <Link to={isProfileEdit ? '/profileEdit' : '/media'}>
+                {/* <li key={profile._id} onClick={() => onEditProfile(profile)}> */}
+                <Link onClick={(ev) => onEditProfile(ev, profile)}>
+                  {/* <Link to={isProfileEdit ? `/profileEdit/${profile._id}` : '/media'}> */}
                   <div >
                     <div className={`img-box ${isProfileEdit && 'editable-profile'}`} style={{ backgroundImage: `url(${profile.imgUrl})` }}>
                     </div>
                     <p>{profile.profileName}</p>
                   </div>
-                  {isProfileEdit && <span className="edit-svg flex" onClick={() => onEditProfile(profile._id)}>{profilesSvg.edit}</span>}
+                  {isProfileEdit && <span className="edit-svg flex">{profilesSvg.edit}</span>}
+                  {/* {isProfileEdit && <span className="edit-svg flex" onClick={() => onEditProfile2(profile._id)}>{profilesSvg.edit}</span>} */}
                 </Link>
               </li>
             )}
 
-            {!(user.profiles.length >= 5) && <li>
-              <Link to={'/'}>
+            {!(user.profiles.length >= 5) && !isProfileEdit && < li >
+              <Link to={`/profileEdit`}>
                 <div>
                   <span className="flex align-center plus-svg">{profilesSvg.plus}</span>
                   <p className="add-profile">Add Profile</p>

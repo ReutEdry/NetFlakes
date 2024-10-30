@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { homePageSvg, loginPageSvg } from '../cmps/Svgs'
 import { loadUsers, login } from '../store/actions/user.actions'
 
-export function Login(props) {
+export function Login() {
     const location = useLocation()
     const [credentials, setCredentials] = useState({ email: location.state || '', password: '' })
     const [isInfoOpen, setIsInfoOpen] = useState(false)
@@ -17,7 +17,6 @@ export function Login(props) {
         , [])
 
     function handleChange(ev) {
-
         const { name, value } = ev.target
         setCredentials((prevCred => (
             { ...prevCred, [name]: value }
