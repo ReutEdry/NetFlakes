@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router"
-import { profilesSvg } from "../cmps/Svgs";
+import { profilesSvg } from "../cmps/Svgs"
+import { ProfileImgs } from "../cmps/profileimgs";
 
 export function EditProfile() {
     const location = useLocation()
     const [profile, setProfile] = useState(location.state)
     const [isLoading, setIsLoading] = useState(true)
+    const [isImgsOpen, setIsImgsOpen] = useState(false)
     const navigate = useNavigate()
 
     console.log(profile);
@@ -20,10 +22,6 @@ export function EditProfile() {
             { ...prevProfile, profileName: value }
         )))
     }
-
-
-
-
 
     return (
         // <section className="edit-profile flex column">
@@ -40,7 +38,10 @@ export function EditProfile() {
                             onLoad={() => setIsLoading(false)}
                             onError={() => setIsLoading(true)} />
                         {isLoading && <div class="nfLoader edit-loader"></div>}
-                        <span className="edit-svg flex">{profilesSvg.edit}</span>
+                        <span
+                            className="edit-svg flex"
+                            onClick={() => setIsImgsOpen(prev => !prev)}
+                        >{profilesSvg.edit}</span>
                     </div>
 
                     <div className="input-container">
@@ -51,6 +52,8 @@ export function EditProfile() {
                             onChange={(ev) => handleChange(ev)}
                         />
                     </div>
+
+                    {isImgsOpen && <ProfileImgs />}
                 </div>
 
                 <div className="btn-actions">

@@ -10,7 +10,6 @@ export function UserProfiles() {
   const [isProfileEdit, setIsProfileEdit] = useState(false)
   const navigate = useNavigate()
   const containerRef = useRef()
-  console.log(user.profiles)
 
   useEffect(() => {
     utilService.animateCSS(containerRef.current)
