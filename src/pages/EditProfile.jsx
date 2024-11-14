@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router"
 import { profilesSvg } from "../cmps/Svgs"
 import { ProfileImgs } from "../cmps/profileimgs";
+import { Link } from "react-router-dom";
 
 export function EditProfile() {
     const location = useLocation()
@@ -27,7 +28,7 @@ export function EditProfile() {
         // <section className="edit-profile flex column">
         <section className="edit-profile">
             {/* <section className="user-profiles edit-profile"> */}
-            <section className="edit-container">
+            <section className="edit-container animate-box">
                 <h2>Edit Profile</h2>
                 <div className="profile-details flex">
 
@@ -59,7 +60,9 @@ export function EditProfile() {
                 <div className="btn-actions">
                     <button className="save-btn" onClick={onNavigateBack}>Save</button>
                     <button onClick={onNavigateBack}>Cancel</button>
-                    <button onClick={onNavigateBack}>Delete Profile</button>
+                    <Link to='/deleteProfile'>
+                        <button>Delete Profile</button>
+                    </Link>
                 </div>
 
             </section>

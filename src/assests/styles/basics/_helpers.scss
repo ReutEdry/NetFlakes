@@ -25,3 +25,19 @@
     cursor: pointer;
     outline: inherit;
 }
+
+.animate-box {
+    animation: animateProfilePage 1.5s forwards;
+}
+
+@keyframes animateProfilePage {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

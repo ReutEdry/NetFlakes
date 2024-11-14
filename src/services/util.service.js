@@ -64,8 +64,9 @@ function loadFromStorage(key) {
 }
 
 function animateCSS(el, isRemoveClass = true) {
+    console.log('el', el)
     return new Promise((resolve, reject) => {
-        const animationName = `profile-animate`
+        const animationName = `animate-box`
         el.classList.remove(animationName)
         el.offsetWidth
         el.classList.add(animationName)
