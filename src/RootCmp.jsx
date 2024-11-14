@@ -11,7 +11,7 @@ import { EditProfile } from './pages/EditProfile'
 import { MediaDetails } from './cmps/MediaDetails'
 import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
-import { DeleteProfile } from './cmps/DeleteProfile'
+import { DeleteProfile } from './pages/DeleteProfile'
 
 
 
@@ -27,7 +27,7 @@ export function RootCmp() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
-                    <Route path="/profileEdit/:profileId?" element={<EditProfile />} />
+                    <Route path="/profileEdit" element={<EditProfile />} />
                     <Route path="/deleteProfile" element={<DeleteProfile />} />
 
                     <Route path="/media" element={<MediaIndex />}>

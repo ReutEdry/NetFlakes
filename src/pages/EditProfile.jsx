@@ -11,10 +11,9 @@ export function EditProfile() {
     const [isImgsOpen, setIsImgsOpen] = useState(false)
     const navigate = useNavigate()
 
-    console.log(profile);
-
-    function onNavigateBack() {
-        navigate('/userProfiles')
+    function onNavigate(isDeleting) {
+        const loc = isDeleting ? `/deleteProfile` : '/userProfiles'
+        navigate(`${loc}`, { state: profile })
     }
 
     function handleChange(ev) {
@@ -58,11 +57,11 @@ export function EditProfile() {
                 </div>
 
                 <div className="btn-actions">
-                    <button className="save-btn" onClick={onNavigateBack}>Save</button>
-                    <button onClick={onNavigateBack}>Cancel</button>
-                    <Link to='/deleteProfile'>
-                        <button>Delete Profile</button>
-                    </Link>
+                    <button className="save-btn" onClick={() => onNavigate(false)}>Save</button>
+                    <button onClick={() => onNavigate(false)}>Cancel</button>
+                    {/* <Link to='/deleteProfile'> */}
+                    <button onClick={() => onNavigate(true)}>Delete Profile</button>
+                    {/* </Link> */}
                 </div>
 
             </section>

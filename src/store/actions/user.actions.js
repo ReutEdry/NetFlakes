@@ -5,7 +5,7 @@ import { store } from '../store'
 import { showErrorMsg } from '../../services/event-bus.service'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
 // import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
-import { SET_USER, SET_USERS } from '../reducers/user.reducer'
+import { REMOVE_USER_PROFILE, SET_USER, SET_USERS } from '../reducers/user.reducer'
 
 export async function loadUsers() {
     try {
@@ -55,6 +55,18 @@ export async function signup(credentials) {
     } catch (err) {
         console.log('Cannot signup', err)
         throw err
+    }
+}
+
+export async function deleteUserProfile(profileId) {
+    console.log('from actions', profileId);
+    try {
+        const user = await userService.deleteProfile(profileId)
+        store.dispatch({ type: REMOVE_USER_PROFILE, profileId })
+        console.log(user);
+
+    } catch (err) {
+        console.log('UserActions: err in remove user profile', err)
     }
 }
 

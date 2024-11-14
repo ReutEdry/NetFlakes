@@ -64,7 +64,6 @@ function loadFromStorage(key) {
 }
 
 function animateCSS(el, isRemoveClass = true) {
-    console.log('el', el)
     return new Promise((resolve, reject) => {
         const animationName = `animate-box`
         el.classList.remove(animationName)

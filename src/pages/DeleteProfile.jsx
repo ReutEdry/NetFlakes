@@ -1,8 +1,23 @@
 import { useEffect, useRef } from 'react'
 import img from '../assests/images/profileImg.png'
 import { utilService } from '../services/util.service'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { deleteUserProfile } from '../store/actions/user.actions'
 
 export function DeleteProfile() {
+
+    const { state: profile } = useLocation()
+    const navigate = useNavigate()
+
+    async function onDeleteProfile() {
+        try {
+            await deleteUserProfile(profile._id)
+            navigate('/userProfiles')
+        } catch (er) {
+            console.log('er:', er);
+        }
+    }
+
     // const containerRef = useRef()
 
     // useEffect(() => {
@@ -17,15 +32,19 @@ export function DeleteProfile() {
 
                 <div className="profile-details flex">
                     <div className="img-box flex column">
-                        <img src={img} alt="" />
-                        <p className="name">name</p>
+                        <img src={profile.imgUrl} alt="" />
+                        <p className="name">{profile.profileName}</p>
                     </div>
                     <p className="warning-text flex">This profile's history - including My List, ratings and activity - will be gone forever, and you won't be able to access it again.</p>
                 </div>
 
                 <div className="btn-actions">
-                    <button className="save-btn">Keep Profile</button>
-                    <button>Delete Profile</button>
+                    <Link to={{ pathname: '/profileEdit', state: profile }}>
+                        <button className="save-btn">Keep Profile</button>
+                    </Link>
+                    {/* <Link to='/userProfiles'> */}
+                    <button onClick={onDeleteProfile}>Delete Profile</button>
+                    {/* </Link> */}
                 </div>
             </section>
 
