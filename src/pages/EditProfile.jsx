@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router"
 import { profilesSvg } from "../cmps/Svgs"
-import { ProfileImgs } from "../cmps/profileimgs";
-import { Link } from "react-router-dom";
+import { ProfileImgs } from "../cmps/profileimgs"
+import { Link } from "react-router-dom"
+import { saveUserProfile } from "../store/actions/user.actions"
 
 export function EditProfile() {
     const location = useLocation()
@@ -11,6 +12,18 @@ export function EditProfile() {
     const [isImgsOpen, setIsImgsOpen] = useState(false)
     const navigate = useNavigate()
 
+    async function onChangeProfileName() {
+        console.log(profile);
+        try {
+            await saveUserProfile(profile)
+            navigate('/userProfiles', { state: profile })
+        } catch (err) {
+            console.log('Had issues to save the new profile name =>', err)
+
+        }
+
+    }
+
     function onNavigate(isDeleting) {
         const loc = isDeleting ? `/deleteProfile` : '/userProfiles'
         navigate(`${loc}`, { state: profile })
@@ -18,6 +31,8 @@ export function EditProfile() {
 
     function handleChange(ev) {
         const { value } = ev.target
+        console.log('value:', value)
+
         setProfile((prevProfile => (
             { ...prevProfile, profileName: value }
         )))
@@ -57,11 +72,15 @@ export function EditProfile() {
                 </div>
 
                 <div className="btn-actions">
-                    <button className="save-btn" onClick={() => onNavigate(false)}>Save</button>
-                    <button onClick={() => onNavigate(false)}>Cancel</button>
-                    {/* <Link to='/deleteProfile'> */}
-                    <button onClick={() => onNavigate(true)}>Delete Profile</button>
+                    {/* <Link to={{ pathname: '/userProfile', state: profile }}> */}
+                    <button className="save-btn" onClick={onChangeProfileName}>Save</button>
                     {/* </Link> */}
+                    <Link to={{ pathname: '/userProfile', state: profile }}>
+                        <button>Cancel</button>
+                    </Link>
+                    <Link to={{ pathname: '/deleteProfile', state: profile }}>
+                        <button>Delete Profile</button>
+                    </Link>
                 </div>
 
             </section>

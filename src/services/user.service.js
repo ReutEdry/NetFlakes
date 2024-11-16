@@ -12,6 +12,7 @@ export const userService = {
     // logout,
     getLoggedinUser,
     deleteProfile,
+    saveProfile
     // saveLocalUser,
     // getById,
     // remove,
@@ -105,8 +106,6 @@ async function signup(userCred) {
 // }
 
 async function deleteProfile(profileId) {
-    console.log('from user service', profileId)
-
     try {
         const user = getLoggedinUser()
         const newProfiles = user.profiles.filter(profile => profile._id !== profileId)
@@ -118,6 +117,8 @@ async function deleteProfile(profileId) {
     }
 }
 
+
+
 async function save(user) {
     if (user._id) {
         const updateUser = await storageService.put(STORAGE_KEY_USER, user)
@@ -128,10 +129,23 @@ async function save(user) {
     }
 }
 
+async function saveProfile(profile) {
+    const user = getLoggedinUser()
+    const profileIdx = user.profiles.findIndex(p => p._id === profile._id)
+    user.profiles.splice(profileIdx, 1, profile)
+
+    try {
+        await save(user)
+        await saveLocalUser(user)
+    } catch (err) {
+        console.log('Could not save userProfile =>', err)
+
+    }
+
+}
+
 
 function saveLocalUser(user) {
-    console.log(user);
-
     user = { _id: user._id, email: user.email, profiles: user.profiles, userName: user.userName }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
