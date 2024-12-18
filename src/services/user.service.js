@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY_USER = 'userdb'
@@ -50,12 +50,9 @@ const usersStorage = [
 
 
 async function getUsers() {
-
-    console.log('get users');
-
-    let users = utilService.loadFromStorage('user')
+    let users = utilService.loadFromStorage(STORAGE_KEY_USER)
     if (!users || !users.length) utilService.saveToStorage(STORAGE_KEY_USER, usersStorage)
-    users = await storageService.query('user')
+    users = await storageService.query(STORAGE_KEY_USER)
     return users
     // return storageService.query('user')
     // return httpService.get(`user`)
@@ -74,12 +71,14 @@ async function getUsers() {
 
 
 async function login(userCred) {
-    const users = await storageService.query(STORAGE_KEY_USER)
-    const user = users.find(user => {
-        return user.email.toUpperCase() === userCred.email.toUpperCase() && user.password === userCred.password
-    })
+    // const users = await storageService.query(STORAGE_KEY_USER)
+    // const user = users.find(user => {
+    //     return user.email.toUpperCase() === userCred.email.toUpperCase() && user.password === userCred.password
+    // })
 
-    // const user = await httpService.post('auth/login', userCred)
+
+    const user = await httpService.post('auth/login', userCred)
+    console.log('user', user)
     if (user) return saveLocalUser(user)
 }
 

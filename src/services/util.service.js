@@ -60,6 +60,8 @@ function saveToStorage(key, value) {
 
 function loadFromStorage(key) {
     const data = localStorage.getItem(key)
+    console.log('loadFromStorage', data);
+
     return (data) ? JSON.parse(data) : undefined
 }
 
