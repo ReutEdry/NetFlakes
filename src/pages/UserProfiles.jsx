@@ -7,7 +7,6 @@ import { utilService } from "../services/util.service";
 export function UserProfiles() {
 
   const user = useSelector(storeState => storeState.userModule.user)
-  console.log('user from userProfiles:', user);
 
   const [isProfileEdit, setIsProfileEdit] = useState(false)
   const navigate = useNavigate()
@@ -21,13 +20,8 @@ export function UserProfiles() {
   function onNavigate(ev, profile) {
     ev.preventDefault()
     const loc = isProfileEdit ? '/profileEdit' : '/media'
-    // const loc = isProfileEdit ? `/profileEdit/${profile._id}` : '/media'
     navigate(`${loc}`, { state: profile })
   }
-
-  // function onNavigate2(profileId) {
-  //   console.log(profileId);
-  // }
 
   async function onActivate() {
     setIsProfileEdit(prev => prev = !prev)
@@ -44,16 +38,13 @@ export function UserProfiles() {
           <ul>
             {user.profiles.map((profile) =>
               <li key={profile._id}>
-                {/* <li key={profile._id} onClick={() => onNavigate(profile)}> */}
                 <Link onClick={(ev) => onNavigate(ev, profile)}>
-                  {/* <Link to={isProfileEdit ? `/profileEdit/${profile._id}` : '/media'}> */}
                   <div >
                     <div className={`img-box ${isProfileEdit && 'editable-profile'}`} style={{ backgroundImage: `url(${profile.imgUrl})` }}>
                     </div>
                     <p>{profile.profileName}</p>
                   </div>
                   {isProfileEdit && <span className="edit-svg flex">{profilesSvg.edit}</span>}
-                  {/* {isProfileEdit && <span className="edit-svg flex" onClick={() => onNavigate2(profile._id)}>{profilesSvg.edit}</span>} */}
                 </Link>
               </li>
             )}

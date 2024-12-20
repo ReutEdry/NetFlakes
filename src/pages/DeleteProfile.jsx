@@ -1,12 +1,9 @@
-import { useEffect, useRef } from 'react'
-import img from '../assests/images/profileImg.png'
-import { utilService } from '../services/util.service'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { deleteUserProfile } from '../store/actions/user.actions'
 
 export function DeleteProfile() {
 
-    const { state: profile } = useLocation()
+    const { state: { profile } } = useLocation()
     const navigate = useNavigate()
 
     async function onDeleteProfile() {
@@ -17,12 +14,6 @@ export function DeleteProfile() {
             console.log('er:', er);
         }
     }
-
-    // const containerRef = useRef()
-
-    // useEffect(() => {
-    //     utilService.animateCSS(containerRef.current)
-    // }, [])
 
     return (
         <section className="edit-profile delete-profile">
@@ -39,15 +30,11 @@ export function DeleteProfile() {
                 </div>
 
                 <div className="btn-actions">
-                    <Link to={{ pathname: '/profileEdit', state: profile }}>
-                        <button className="save-btn">Keep Profile</button>
-                    </Link>
-                    {/* <Link to='/userProfiles'> */}
+                    <button onClick={() => navigate('/profileEdit', { state: profile })} className="save-btn">Keep Profile</button>
                     <button onClick={onDeleteProfile}>Delete Profile</button>
-                    {/* </Link> */}
                 </div>
             </section>
 
-        </section>
+        </section >
     )
 }
