@@ -11,6 +11,7 @@ import { EditProfile } from './pages/EditProfile'
 import { MediaDetails } from './cmps/MediaDetails'
 import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
+import { DeleteProfile } from './pages/DeleteProfile'
 
 
 
@@ -23,10 +24,14 @@ export function RootCmp() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
+
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/userProfiles" element={<UserProfiles />} />
                     <Route path="/profileEdit" element={<EditProfile />} />
+                    <Route path="/deleteProfile" element={<DeleteProfile />} />
+
                     <Route path="/media" element={<MediaIndex />}>
                         <Route path=":mediaId?" element={<MediaDetails />} />
                     </Route>

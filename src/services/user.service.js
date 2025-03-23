@@ -1,6 +1,6 @@
 import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 const STORAGE_KEY_USER = 'userdb'
@@ -11,6 +11,8 @@ export const userService = {
     signup,
     // logout,
     getLoggedinUser,
+    deleteProfile,
+    saveProfile
     // saveLocalUser,
     // getById,
     // remove,
@@ -48,10 +50,9 @@ const usersStorage = [
 
 
 async function getUsers() {
-
-    let users = utilService.loadFromStorage('user')
+    let users = utilService.loadFromStorage(STORAGE_KEY_USER)
     if (!users || !users.length) utilService.saveToStorage(STORAGE_KEY_USER, usersStorage)
-    users = await storageService.query('user')
+    users = await storageService.query(STORAGE_KEY_USER)
     return users
     // return storageService.query('user')
     // return httpService.get(`user`)
@@ -70,12 +71,14 @@ async function getUsers() {
 
 
 async function login(userCred) {
-    const users = await storageService.query(STORAGE_KEY_USER)
-    const user = users.find(user => {
-        return user.email.toUpperCase() === userCred.email.toUpperCase() && user.password === userCred.password
-    })
+    // const users = await storageService.query(STORAGE_KEY_USER)
+    // const user = users.find(user => {
+    //     return user.email.toUpperCase() === userCred.email.toUpperCase() && user.password === userCred.password
+    // })
 
-    // const user = await httpService.post('auth/login', userCred)
+
+    const user = await httpService.post('auth/login', userCred)
+    console.log('user', user)
     if (user) return saveLocalUser(user)
 }
 
@@ -101,9 +104,47 @@ async function signup(userCred) {
 //     // return await httpService.post('auth/logout')
 // }
 
-function saveLocalUser(user) {
-    console.log(user);
+async function deleteProfile(profileId) {
+    try {
+        const user = getLoggedinUser()
+        const newProfiles = user.profiles.filter(profile => profile._id !== profileId)
+        user.profiles = newProfiles
+        await saveLocalUser(user)
+        return await save(user)
+    } catch (err) {
+        console.log('Could not delete userProfile =>', err)
+    }
+}
 
+
+
+async function save(user) {
+    if (user._id) {
+        const updateUser = await storageService.put(STORAGE_KEY_USER, user)
+        return updateUser
+    } else {
+        const updateUser = await storageService.post(STORAGE_KEY_USER, user)
+        return updateUser
+    }
+}
+
+async function saveProfile(profile) {
+    const user = getLoggedinUser()
+    const profileIdx = user.profiles.findIndex(p => p._id === profile._id)
+    user.profiles.splice(profileIdx, 1, profile)
+
+    try {
+        await save(user)
+        await saveLocalUser(user)
+    } catch (err) {
+        console.log('Could not save userProfile =>', err)
+
+    }
+
+}
+
+
+function saveLocalUser(user) {
     user = { _id: user._id, email: user.email, profiles: user.profiles, userName: user.userName }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user

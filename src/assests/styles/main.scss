@@ -12,6 +12,7 @@
 
 // Components
 @import 'cmps/AppHeader.scss';
+@import 'cmps/ProfileImgs';
 
 
 // Pages
@@ -19,6 +20,8 @@
 @import 'pages/Login.scss';
 @import 'pages/Signup.scss';
 @import 'pages/UserProfiles';
+@import 'pages/EditProfile';
+@import 'pages/DeleteProfile';
 
 
 

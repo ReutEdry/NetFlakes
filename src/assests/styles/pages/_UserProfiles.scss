@@ -5,178 +5,157 @@
     justify-content: center;
     flex-direction: column;
     background: #141414;
+    overflow: hidden;
 
-    div {
-        animation: animateProfilePage 1.5s forwards;
 
-        h1 {
-            margin-block: 0.67em;
-            font-size: 3.5vw;
-            text-align: center;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: white;
-        }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        ul {
-            padding: 0;
-            margin: 2em 0;
-            font-size: 10.657px;
-            list-style: none;
+        div {
 
-            li {
-                position: relative;
-                margin-inline-end: 2vw;
-                display: inline-block;
+            h1 {
+                margin-block: 0.67em;
+                font-size: 3.5vw;
+                text-align: center;
+                font-weight: 400;
+                letter-spacing: 1px;
+                color: white;
+            }
 
-                a {
+            ul {
+                padding: 0;
+                margin: 2em 0;
+                font-size: 10.657px;
+                list-style: none;
 
-                    .img-box {
-                        position: relative;
-                        height: 10vw;
-                        width: 10vw;
-                        max-width: 200px;
-                        max-height: 200px;
-                        min-width: 84px;
-                        min-height: 84px;
-                        position: relative;
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        border-radius: 4px;
-                    }
+                li {
+                    position: relative;
+                    margin-inline-end: 2vw;
+                    display: inline-block;
 
-                    .editable-profile {
-                        // opacity: 0.5;
-                        filter: brightness(0.5);
-                    }
+                    a {
 
-                    .edit-svg {
-                        position: absolute;
-                        align-items: center;
-                        justify-content: center;
-                        bottom: 46px;
-                        left: 0;
-                        right: 0;
-                        top: 0;
-
-                        svg {
-                            height: 3em;
-                            max-height: 70px;
-                            max-width: 70px;
-                            width: 3em;
-                            color: white;
-                        }
-                    }
-
-                    p {
-                        margin: .6em 0;
-                        min-height: 1.8em;
-                        color: grey;
-                        font-size: 1.3vw;
-                        line-height: 1.2em;
-                        text-align: center;
-                    }
-
-                    .plus-svg {
-
-                        justify-content: center;
-                        height: 10vw;
-                        width: 10vw;
-                        max-width: 200px;
-                        max-height: 200px;
-                        min-width: 84px;
-                        min-height: 84px;
-                        border-radius: 4px;
-
-                        &:hover {
-                            background-color: white;
-                        }
-
-                    }
-
-                    .add-profile {
-                        margin-block-start: 0.74em;
-                    }
-
-                    &:hover p {
-                        color: #e5e5e5;
-                    }
-
-                    &:hover .img-box {
-                        &::after {
-                            position: absolute;
-                            display: block;
-                            border: .3em solid #e5e5e5;
+                        .img-box {
+                            position: relative;
+                            height: 10vw;
+                            width: 10vw;
+                            max-width: 200px;
+                            max-height: 200px;
+                            min-width: 84px;
+                            min-height: 84px;
+                            position: relative;
+                            background-size: cover;
+                            background-repeat: no-repeat;
                             border-radius: 4px;
-                            content: "";
-                            bottom: 0;
+                        }
+
+                        .editable-profile {
+                            // opacity: 0.5;
+                            filter: brightness(0.5);
+                        }
+
+                        .edit-svg {
+                            position: absolute;
+                            align-items: center;
+                            justify-content: center;
+                            bottom: 46px;
                             left: 0;
                             right: 0;
                             top: 0;
+
+                            svg {
+                                height: 3em;
+                                max-height: 70px;
+                                max-width: 70px;
+                                width: 3em;
+                                color: white;
+                            }
                         }
+
+                        p {
+                            margin: .6em 0;
+                            min-height: 1.8em;
+                            color: grey;
+                            font-size: 1.3vw;
+                            line-height: 1.2em;
+                            text-align: center;
+                        }
+
+                        .plus-svg {
+
+                            justify-content: center;
+                            height: 10vw;
+                            width: 10vw;
+                            max-width: 200px;
+                            max-height: 200px;
+                            min-width: 84px;
+                            min-height: 84px;
+                            border-radius: 4px;
+
+                            &:hover {
+                                background-color: white;
+                            }
+
+                        }
+
+                        .add-profile {
+                            margin-block-start: 0.74em;
+                        }
+
+                        &:hover p {
+                            color: #e5e5e5;
+                        }
+
+                        &:hover .img-box {
+                            &::after {
+                                position: absolute;
+                                display: block;
+                                border: .3em solid #e5e5e5;
+                                border-radius: 4px;
+                                content: "";
+                                bottom: 0;
+                                left: 0;
+                                right: 0;
+                                top: 0;
+                            }
+                        }
+
+
                     }
+                }
+            }
+        }
 
+        .edit-profiles {
+            margin: 2em 0 1em;
+            padding: .5em 1.5em;
+            font-size: 1.2vw;
+            letter-spacing: 2px;
+            border: 1px solid grey;
+            color: grey;
+            background-color: transparent;
 
+            &:hover {
+                border: 1px solid white;
+                color: white;
+                cursor: pointer;
+            }
+
+            &.done-edit {
+                background: #fff;
+                border: 1px solid #fff;
+                color: #000;
+                font-weight: 500;
+
+                &:hover {
+                    background: #c00;
+                    border: 1px solid #c00;
+                    color: #fff;
                 }
             }
         }
     }
 
-    .edit-profiles {
-        animation: animateProfilePage 1.5s forwards;
-        margin: 2em 0 1em;
-        padding: .5em 1.5em;
-        font-size: 1.2vw;
-        letter-spacing: 2px;
-        border: 1px solid grey;
-        color: grey;
-        background-color: transparent;
-
-        &:hover {
-            border: 1px solid white;
-            color: white;
-            cursor: pointer;
-        }
-
-        &.done-edit {
-            background: #fff;
-            border: 1px solid #fff;
-            color: #000;
-            font-weight: 500;
-
-            &:hover {
-                background: #c00;
-                border: 1px solid #c00;
-                color: #fff;
-            }
-        }
-    }
-
-
 }
-
-@keyframes animateProfilePage {
-    0% {
-        opacity: 0;
-        transform: scale(1.1);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-
-// img {
-//     height: 10vw;
-//     width: 10vw;
-//     max-width: 200px;
-//     max-height: 200px;
-//     min-width: 84px;
-//     min-height: 84px;
-//     position: relative;
-//     border-radius: 4px;
-//     // border: .2em solid transparent;
-// }
